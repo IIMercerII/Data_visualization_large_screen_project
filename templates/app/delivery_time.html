@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>发货数据展示</title>
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src='/static/js/echarts.js'></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome 5 -->
+    <script src="/static/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
+    <!-- Page plugins -->
+    <script src="/static/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="/static/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script src="/static/vendor/input-mask/input-mask.min.js"></script>
+    <script src="/static/vendor/nouislider/js/nouislider.min.js"></script>
+    <script src="/static/vendor/textarea-autosize/textarea-autosize.min.js"></script>
+    <!-- Theme JS -->
+    <script src="/static/js/theme.js"></script>
+</head>
+
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4" >
+      <div class="container">
+        <a class="navbar-brand" href="./"><strong>数据可视化</strong></a>
+        <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main" aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
+          <ul class="navbar-nav ml-auto align-items-lg-center">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">销售数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">全国统计</a>
+                <a class="dropdown-item" href="">地区/省份统计</a>
+                <a class="dropdown-item" href="">二级菜单1</a>
+                <a class="dropdown-item" href="">二级菜单2</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">产品数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">占比与子类</a>
+                <a class="dropdown-item" href="">价格分析</a>
+                <a class="dropdown-item" href="">爆款产品</a>
+                <a class="dropdown-item" href="">商品推荐</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">客户数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">客户分布</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8081/customer">客户分析</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">发货数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">二级菜单1</a>
+                <a class="dropdown-item" href="">二级菜单2</a>
+                <a class="dropdown-item" href="">二级菜单3</a>
+                <a class="dropdown-item" href="">二级菜单4</a>
+              </div>
+            </li>
+
+
+
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://github.com/webpixels" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<body>
+<div style="position: absolute;width: 100%;height: 100%">
+    <div id="main1" style="width:50%; height:50%;float:left;"></div>
+    <div id="main2" style="width: 50%; height:50%;float:left"></div>
+    <div id="main3" style="width: 100%; height:50%;float:left"></div>
+</div>
+    <script type="text/javascript">
+        //基于准备好的dom，初始化ECharts图表
+    var myChart1 = echarts.init(document.getElementById("main1"));
+    var option1 = {
+   title: {
+    text: '发货时效'
+  },
+    tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  xAxis: {
+    name:'邮寄方式',
+    type: 'category',
+    data: ['当日', '一级', '二级', '标准级']
+  },
+  yAxis: {
+    name:'平均发货时效（天）',
+    type: 'value'
+  },
+  series: [
+    {
+      data: [0.05, 2.22, 3.21, 5.01],
+      type: 'bar'
+    }
+  ]
+};
+
+var myChart2 = echarts.init(document.getElementById("main2"));
+var option2 = {
+   title: {
+    text: '发货方式与订单数'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      crossStyle: {
+        color: '#999'
+      }
+    }
+  },
+  legend: {
+    data: ['2016', '2017', '2018']
+  },
+  xAxis:
+    {
+      name:'邮寄方式',
+      type: 'category',
+      data: ['当日', '一级', '二级', '标准级'],
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+yAxis: {
+    name:'订单数',
+    type: 'value'
+  },
+  series: [
+    {
+      name: '2016',
+      type: 'bar',
+      data: [
+        62,158,242,631
+      ],
+      itemStyle: {
+						  	normal: {
+								label: {
+									show: true, //开启显示
+									position: 'top', //在上方显示
+									textStyle: { //数值样式
+										fontSize: 10
+									}
+								}
+							}
+            }
+    },
+    {
+      name: '2017',
+      type: 'bar',
+      data: [
+        61,195,280,789
+      ],
+      itemStyle: {
+						  	normal: {
+								label: {
+									show: true, //开启显示
+									position: 'top', //在上方显示
+									textStyle: { //数值样式
+										fontSize: 10
+									}
+								}
+							}
+            }
+    },
+    {
+      name: '2018',
+      type: 'bar',
+      data: [80,246,345,1012],
+      itemStyle: {
+						  	normal: {
+								label: {
+									show: true, //开启显示
+									position: 'top', //在上方显示
+									textStyle: { //数值样式
+										fontSize: 10
+									}
+								}
+							}
+            }
+    }
+  ]
+};
+var myChart3 = echarts.init(document.getElementById("main3"));
+var option3 = {
+        title: {
+            text: '各省2018标准级发货',
+        },
+        tooltip: {
+                    valueFormatter: function (value) {
+                        return value + '天';
+                    }
+                },
+        dataset: {
+            source: [
+                ['天数', '省份'],
+                [0, '西藏'],
+                [4.54, '广西'],
+                [4.71, '云南'],
+                [4.71, '浙江'],
+                [4.74, '山西'],
+                [4.75, '海南'],
+                [4.78, '天津'],
+                [4.79, '四川'],
+                [4.83, '湖北'],
+                [4.89, '江西'],
+                [4.91, '内蒙古'],
+                [4.93, '黑龙江'],
+                [4.94, '北京'],
+                [4.96, '福建'],
+                [4.97, '山东'],
+                [4.98, '河南'],
+                [5, '湖南'],
+                [5.03, '广东'],
+                [5.04, '上海'],
+                [5.05, '辽林'],
+                [5.05, '重庆'],
+                [5.06, '安徽'],
+                [5.1, '江苏'],
+                [5.11, '陕西'],
+                [5.12, '河北'],
+                [5.14, '贵州'],
+                [5.25, '宁夏'],
+                [5.25, '甘肃'],
+                [5.38, '吉林'],
+                [5.5, '青海'],
+                [5.67, '新疆'],
+            ]
+        },
+        grid: { containLabel: true },
+        xAxis: {
+          name:'省',
+          type: 'category' ,
+          axisLabel: {
+            inside: false,
+            rotate: 45
+   },
+        },
+        yAxis: {
+          name:'天数',
+          type: 'value'
+        },
+        visualMap: {
+            //orient: 'horizontal',
+            left: 'right',
+            top: '30%',
+            min: 0,
+            max: 6,
+            calculable:true,
+            //text: [350, 0],
+            // Map the score column to color
+            dimension: 0,
+            inRange: {
+                //symbolSize:[0,350],
+                color: ['#65B581', '#FFCE34', '#FD665F']
+            }
+        },
+        series: [
+            {
+                type: 'bar',
+                encode: {
+                    // Map the "amount" column to X axis.
+                    x: '省份',
+                    // Map the "product" column to Y axis
+                    y: '客户数'
+                },
+                itemStyle: {
+						  	normal: {
+								label: {
+									show: true, //开启显示
+									position: 'top', //在上方显示
+									textStyle: { //数值样式
+										fontSize: 10
+									}
+								}
+							}
+            }
+          }
+        ]
+    };
+
+      myChart1.setOption(option1);
+      myChart2.setOption(option2);
+      myChart3.setOption(option3);
+
+  </script>
+</body>
+</html>

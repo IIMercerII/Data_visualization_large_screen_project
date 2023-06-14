@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>价格分析：各月价格带等等</title>
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- FontAwesome 5 -->
+    <script src="/static/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
+    <!-- Page plugins -->
+    <script src="/static/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="/static/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script src="/static/vendor/input-mask/input-mask.min.js"></script>
+    <script src="/static/vendor/nouislider/js/nouislider.min.js"></script>
+    <script src="/static/vendor/textarea-autosize/textarea-autosize.min.js"></script>
+    <!-- Theme JS -->
+    <script src="/static/js/theme.js"></script>
+
+</head>
+
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4" >
+      <div class="container">
+        <a class="navbar-brand" href="./"><strong>数据可视化</strong></a>
+        <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main" aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
+          <ul class="navbar-nav ml-auto align-items-lg-center">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">销售数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">全国统计</a>
+                <a class="dropdown-item" href="">地区/省份统计</a>
+                <a class="dropdown-item" href="">二级菜单1</a>
+                <a class="dropdown-item" href="">二级菜单2</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">产品数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">占比与子类</a>
+                <a class="dropdown-item" href="">价格分析</a>
+                <a class="dropdown-item" href="">爆款产品</a>
+                <a class="dropdown-item" href="">商品推荐</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">客户数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">客户分布</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8081/customer">客户分析</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">发货数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">二级菜单1</a>
+                <a class="dropdown-item" href="">二级菜单2</a>
+                <a class="dropdown-item" href="">二级菜单3</a>
+                <a class="dropdown-item" href="">二级菜单4</a>
+              </div>
+            </li>
+
+
+
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://github.com/webpixels" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<body>
+    <div class="contanier-fluid text-center">
+        <div class="row">
+            <div class="col border border-primary">
+                <div id='bar_1' style="width:40vw;height:40vh;">
+                    <script type="text/javascript">
+                        var myChart1 = echarts.init(document.getElementById("bar_1"));
+                        //myChart.showLoading();
+
+                        //console.log(data_1.data1[0].value)
+                        option = {
+                            title: {
+                                text: '2017年11月价格带',
+                                //x:'center',
+                                y: 'top',
+                                align: 'center',
+                                textStyle: {
+                                    color: '#666666',
+                                    fontWeight: 'bolder',
+                                    fontSize: 28
+                                }
+                            },
+                            //backgroundColor: '#f7f7f7',//背景颜色
+                            grid: {  //调整统计图上下左右边距
+                                top: 80,
+                                right: 80,
+                                bottom: 30,
+                                left: 60
+                            },
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'cross',
+                                    crossStyle: {
+                                        color: '#999'
+                                    }
+                                }
+                            },
+                            toolbox: {
+                                feature: {
+                                    dataView: { show: false, readOnly: false },
+                                    magicType: { show: false, type: ['line', 'bar'] },
+                                    restore: { show: false },
+                                    saveAsImage: { show: false }
+                                }
+                            },
+                            legend: {
+                                top: 45,
+                                data: ['销售额', '平均折扣']
+                            },
+
+                            xAxis: [
+                                {
+                                    name: '价格带(元)',
+                                    type: 'category',
+                                    data: ['0-100', '100-500', '500-1000', '1000-2000', '2000-10000'],
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value',
+                                    name: '销售额',
+                                    min: 0,
+                                    max: 18,
+                                    interval: 3,
+                                    axisLabel: {
+                                        formatter: '{value} '
+                                    }
+                                },
+                                {
+                                    type: 'value',
+                                    name: '平均折扣',
+                                    min: 0,
+                                    max: 1,
+                                    interval: 0.2,
+                                    axisLabel: {
+                                        formatter: '{value} '
+                                    }
+                                }
+                            ],
+                            visualMap: {
+                                orient: 'vertical',
+                                right: '0%',
+                                top: '20%',
+                                min: 0,
+                                max: 18,
+                                text: ['销售额'],
+                                // Map the score column to color
+                                dimension: 1,
+                                inRange: {
+                                    color: ['#65B581', '#FFCE34', '#FD665F']
+                                }
+                            },
+                            series: [
+                                {
+                                    name: '销售额',
+                                    type: 'bar',
+                                    // tooltip: {
+                                    //     valueFormatter: function (value) {
+                                    //         return value;
+                                    //     }
+                                    // },
+                                    data: [
+                                        2.4328, 9.8727, 16.3799, 13.0184, 11.0587
+                                    ],
+                                    itemStyle: {   //双Y轴A柱的柱体颜色
+                                        normal: {
+                                            label: {
+                                                show: true, position: 'inside'
+                                            },
+                                            data: [
+                                                2.4328, 9.8727, 16.3799, 13.0184, 11.0587
+                                            ],
+                                            // color: '#77caff'
+                                        }
+                                    }
+                                },
+                                {
+                                    name: '平均折扣',
+                                    type: 'line',
+                                    yAxisIndex: 1,
+                                    smooth: true,
+                                    tooltip: {
+                                        valueFormatter: function (value) {
+                                            return value;
+                                        }
+                                    },
+                                    data: [0.7, 0.83, 0.83, 0.8, 0.91]
+                                }
+                            ]
+                        };
+                        myChart1.setOption(option);
+                    </script>
+                </div>
+            </div>
+            <div class="col border border-perimary">
+                <div id='bar_2' style="width:40vw;height:40vh;">
+                    <script type="text/javascript">
+                        var myChart2 = echarts.init(document.getElementById("bar_2"));
+                        option = {
+                            title: {
+                                text: '2018年11月价格带',
+                                //x:'center',
+                                y: 'top',
+                                align: 'center',
+                                textStyle: {
+                                    color: '#666666',
+                                    fontWeight: 'bolder',
+                                    fontSize: 28
+                                }
+                            },
+                            //backgroundColor: '#f7f7f7',//背景颜色
+                            grid: {  //调整统计图上下左右边距
+                                top: 80,
+                                right: 80,
+                                bottom: 30,
+                                left: 60
+                            },
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'cross',
+                                    crossStyle: {
+                                        color: '#999'
+                                    }
+                                }
+                            },
+                            toolbox: {
+                                feature: {
+                                    dataView: { show: false, readOnly: false },
+                                    magicType: { show: false, type: ['line', 'bar'] },
+                                    restore: { show: false },
+                                    saveAsImage: { show: false }
+                                }
+                            },
+                            legend: {
+                                top: 45,
+                                data: ['销售额', '平均折扣']
+                            },
+
+                            xAxis: [
+                                {
+                                    name: '价格带(元)',
+                                    type: 'category',
+                                    data: ['0-100', '100-500', '500-1000', '1000-2000', '2000-10000'],
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value',
+                                    name: '销售额',
+                                    min: 0,
+                                    max: 18,
+                                    interval: 3,
+                                    axisLabel: {
+                                        formatter: '{value} '
+                                    }
+                                },
+                                {
+                                    type: 'value',
+                                    name: '平均折扣',
+                                    min: 0,
+                                    max: 1,
+                                    interval: 0.2,
+                                    axisLabel: {
+                                        formatter: '{value} '
+                                    }
+                                }
+                            ],
+                            visualMap: {
+                                orient: 'vertical',
+                                right: '0%',
+                                top: '20%',
+                                min: 0,
+                                max: 18,
+                                text: ['销售额'],
+                                // Map the score column to color
+                                dimension: 1,
+                                inRange: {
+                                    color: ['#65B581', '#FFCE34', '#FD665F']
+                                }
+                            },
+                            series: [
+                                {
+                                    name: '销售额',
+                                    type: 'bar',
+                                    // tooltip: {
+                                    //     valueFormatter: function (value) {
+                                    //         return value;
+                                    //     }
+                                    // },
+                                    data: [
+                                        2.4328, 9.8727, 16.3799, 13.0184, 11.0587
+                                    ],
+                                    itemStyle: {   //双Y轴A柱的柱体颜色
+                                        normal: {
+                                            label: {
+                                                show: true, position: 'inside'
+                                            },
+                                            data: [
+                                                2.4328, 9.8727, 16.3799, 13.0184, 11.0587
+                                            ],
+                                            // color: '#77caff'
+                                        }
+                                    }
+                                },
+                                {
+                                    name: '平均折扣',
+                                    type: 'line',
+                                    yAxisIndex: 1,
+                                    smooth: true,
+                                    tooltip: {
+                                        valueFormatter: function (value) {
+                                            return value;
+                                        }
+                                    },
+                                    data: [0.7, 0.83, 0.83, 0.8, 0.91]
+                                }
+                            ]
+                        };
+                        //使用刚指定的配置项和数据显示图表
+                        myChart2.setOption(option);
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col border border-primary">
+                <div id='bar_3' style="width:40vw;height:40vh;">
+                    <script type="text/javascript">
+                        var myChart3 = echarts.init(document.getElementById("bar_3"));
+                        //myChart.showLoading();
+
+                        //console.log(data_1.data1[0].value)
+                        option = {
+                            title: {
+                                text: "2017年各月份的商品平均单价、平均折扣",
+                                textStyle: {
+                                    color: 'black',
+                                },
+                            },
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'cross',
+                                    crossStyle: {
+                                        color: '#999'
+                                    }
+                                }
+                            },
+                            toolbox: {//右上角的各种操作
+                                feature: {
+                                    dataView: { show: false, readOnly: false },//切换数据视图
+                                    magicType: { show: false, type: ['line', 'bar'] },//切换为折线图或者柱状图
+                                    restore: { show: false },//刷新
+                                    saveAsImage: { show: false }//保存为图片
+                                }
+                            },
+                            legend: {//图表标注
+                                top: 45,
+                                data: ['平均单价', '平均折扣']
+                            },
+                            grid: {  //调整统计图上下左右边距
+                                top: 80,
+                                right: 75,
+                                bottom: 30,
+                                left: 70
+                            },
+                            xAxis: [
+                                {
+                                    nameLocation: "center",
+                                    nameGap: 35,
+                                    nameRotate: 0,
+                                    nameTextStyle: {
+                                        fontSize: 16,
+                                    },
+                                    type: 'category',
+                                    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    },
+                                    splitLine: { show: false },//去除网格线
+
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    axisLine: {//Y轴只显示数值不显示竖线
+                                        show: true,
+                                    },
+                                    type: 'value',
+                                    name: '元',
+                                    min: 10,
+                                    max: 45,
+                                    interval: 5,//每份多少
+                                    axisLabel: {
+                                        formatter: '{value} '//每个刻度后面加单位
+                                    },
+                                    splitLine: { show: true },//去除网格线
+                                },
+                                {
+                                    axisLine: {//Y轴只显示数值不显示竖线
+                                        show: true,
+                                    },
+                                    type: 'value',
+                                    min: 300,
+                                    max: 1000,
+                                    interval: 100,
+                                    axisLabel: {
+                                        formatter: '{value}'
+                                    },
+                                    splitLine: { show: false },//去除网格线
+                                },
+                            ],
+                            series: [
+                                {
+                                    name: '平均单价',
+                                    type: 'line',
+                                    yAxisIndex: 0,
+                                    data: [17, 13, 19, 14, 42, 34, 16, 43, 31, 36, 42, 36],
+                                    smooth: true,
+                                    markLine: {
+                                        data: [{ type: 'average', name: '平均值' }]
+                                    }
+                                },
+                                {
+                                    name: '平均折扣',
+                                    type: 'line',
+                                    yAxisIndex: 1,
+                                    data: [498, 310, 490, 360, 895, 800, 405, 809, 715, 988, 897, 801],
+                                    smooth: true,
+                                    markLine: {
+                                        data: [{ type: 'average', name: '平均值' }]
+                                    }
+                                }
+                            ]
+                        };
+                        myChart3.setOption(option);
+                    </script>
+                </div>
+            </div>
+            <div class="col border border-perimary">
+                <div id='bar_4' style="width:40vw;height:40vh;">
+                    <script type="text/javascript">
+                        var myChart4 = echarts.init(document.getElementById("bar_4"));
+                        option = {
+                            title: {
+                                text: "2018年各月份的商品平均单价、平均折扣",
+                                textStyle: {
+                                    color: 'black',
+                                },
+                            },
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'cross',
+                                    crossStyle: {
+                                        color: '#999'
+                                    }
+                                }
+                            },
+                            toolbox: {//右上角的各种操作
+                                feature: {
+                                    dataView: { show: false, readOnly: false },//切换数据视图
+                                    magicType: { show: false, type: ['line', 'bar'] },//切换为折线图或者柱状图
+                                    restore: { show: false },//刷新
+                                    saveAsImage: { show: false }//保存为图片
+                                }
+                            },
+                            legend: {//图表标注
+                                top: 45,
+                                data: ['平均单价', '平均折扣']
+                            },
+                            grid: {  //调整统计图上下左右边距
+                                top: 80,
+                                right: 75,
+                                bottom: 30,
+                                left: 70
+                            },
+                            xAxis: [
+                                {
+                                    nameLocation: "center",
+                                    nameGap: 35,
+                                    nameRotate: 0,
+                                    nameTextStyle: {
+                                        fontSize: 16,
+                                    },
+                                    type: 'category',
+                                    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    },
+                                    splitLine: { show: false },//去除网格线
+
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    axisLine: {//Y轴只显示数值不显示竖线
+                                        show: true,
+                                    },
+                                    type: 'value',
+                                    name: '元',
+                                    min: 10,
+                                    max: 45,
+                                    interval: 5,//每份多少
+                                    axisLabel: {
+                                        formatter: '{value} '//每个刻度后面加单位
+                                    },
+                                    splitLine: { show: true },//去除网格线
+                                },
+                                {
+                                    axisLine: {//Y轴只显示数值不显示竖线
+                                        show: true,
+                                    },
+                                    type: 'value',
+                                    min: 300,
+                                    max: 1000,
+                                    interval: 100,
+                                    axisLabel: {
+                                        formatter: '{value}'
+                                    },
+                                    splitLine: { show: false },//去除网格线
+                                },
+                            ],
+                            series: [
+                                {
+                                    name: '平均单价',
+                                    type: 'line',
+                                    yAxisIndex: 0,
+                                    data: [17, 13, 19, 14, 42, 34, 16, 43, 31, 36, 42, 36],
+                                    smooth: true,
+                                    markLine: {
+                                        data: [{ type: 'average', name: '平均值' }]
+                                    }
+                                },
+                                {
+                                    name: '平均折扣',
+                                    type: 'line',
+                                    yAxisIndex: 1,
+                                    data: [498, 310, 490, 360, 895, 800, 405, 809, 715, 988, 897, 801],
+                                    smooth: true,
+                                    markLine: {
+                                        data: [{ type: 'average', name: '平均值' }]
+                                    }
+                                }
+                            ]
+                        };
+                        //使用刚指定的配置项和数据显示图表
+                        myChart4.setOption(option);
+                    </script>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

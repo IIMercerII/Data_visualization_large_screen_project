@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全国概况及年数据分析</title>
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- FontAwesome 5 -->
+    <script src="/static/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
+    <!-- Page plugins -->
+    <script src="/static/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="/static/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script src="/static/vendor/input-mask/input-mask.min.js"></script>
+    <script src="/static/vendor/nouislider/js/nouislider.min.js"></script>
+    <script src="/static/vendor/textarea-autosize/textarea-autosize.min.js"></script>
+    <!-- Theme JS -->
+    <script src="/static/js/theme.js"></script>
+</head>
+
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4" >
+      <div class="container">
+        <a class="navbar-brand" href="./"><strong>数据可视化</strong></a>
+        <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main" aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
+          <ul class="navbar-nav ml-auto align-items-lg-center">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">销售数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">全国统计</a>
+                <a class="dropdown-item" href="">地区/省份统计</a>
+                <a class="dropdown-item" href="">二级菜单1</a>
+                <a class="dropdown-item" href="">二级菜单2</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">产品数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">占比与子类</a>
+                <a class="dropdown-item" href="">价格分析</a>
+                <a class="dropdown-item" href="">爆款产品</a>
+                <a class="dropdown-item" href="">商品推荐</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">客户数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">客户分布</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8081/customer">客户分析</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">发货数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">二级菜单1</a>
+                <a class="dropdown-item" href="">二级菜单2</a>
+                <a class="dropdown-item" href="">二级菜单3</a>
+                <a class="dropdown-item" href="">二级菜单4</a>
+              </div>
+            </li>
+
+
+
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://github.com/webpixels" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+<style>
+    #border-primary {
+        width: 100vw;
+        height: 100vh;
+        float: left;
+        /* border: 1px solid red; */
+        margin: 0 auto;
+    }
+
+    #border-primary #bar1 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar2 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar3 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar4 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar5 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar6 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar7 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar8 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar9 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar10 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar11 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar12 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar13 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar14 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar15 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar16 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar17 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar18 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar19 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar20 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar21 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar22 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar23 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar24 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar25 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar26 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar27 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar28 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar29 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar30 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar31 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar32 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+</style>
+<style>
+    #border-primary #bar_1 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar_2 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar_3 {
+        float: left;
+        width: 33vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar_4 {
+        float: left;
+        width: 33vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar_5 {
+        float: left;
+        width: 33vw;
+        height: 100vh;
+    }
+</style>
+<div id="border-primary">
+    <div class="row">
+        <div id="bar1" style="width:12vw;height: 6vh;">年</div>
+        <div id="bar2" style="width:12vw;height: 6vh;">销售额（万）</div>
+        <div id="bar3" style="width:12vw;height: 6vh;">利润（万）</div>
+        <div id="bar4" style="width:12vw;height: 6vh;">利润率</div>
+        <div id="bar5" style="width:12vw;height: 6vh;">卖出商品数</div>
+        <div id="bar6" style="width:12vw;height: 6vh;">订单数</div>
+        <div id="bar7" style="width:12vw;height: 6vh;">平均折扣</div>
+        <div id="bar8" style="width:12vw;height: 6vh;">客单价</div>
+    </div>
+    <div class="row">
+        <div id="bar9" style="width: 12vw;height: 6vh;">2016</div>
+        <div id="bar10" style="width:12vw;height: 6vh;">343.19</div>
+        <div id="bar11" style="width:12vw;height: 6vh;">47.15</div>
+        <div id="bar12" style="width:12vw;height: 6vh;">15.93%</div>
+        <div id="bar13" style="width:12vw;height: 6vh;">8012</div>
+        <div id="bar14" style="width:12vw;height: 6vh;">1038</div>
+        <div id="bar15" style="width:12vw;height: 6vh;">86.57%</div>
+        <div id="bar16" style="width:12vw;height: 6vh;">3306.28</div>
+    </div>
+    <div class="row">
+        <div id="bar17" style="width:12vw;height: 6vh;">2017</div>
+        <div id="bar18" style="width:12vw;height: 6vh;">424.35</div>
+        <div id="bar19" style="width:12vw;height: 6vh;">47.15</div>
+        <div id="bar20" style="width:12vw;height: 6vh;">15.93%</div>
+        <div id="bar21" style="width:12vw;height: 6vh;">8012</div>
+        <div id="bar22" style="width:12vw;height: 6vh;">1038</div>
+        <div id="bar23" style="width:12vw;height: 6vh;">86.57%</div>
+        <div id="bar24" style="width:12vw;height: 6vh;">3306.28</div>
+    </div>
+    <div class="row">
+        <div id="bar25" style="width:12vw;height: 6vh;">2018</div>
+        <div id="bar26" style="width:12vw;height: 6vh;">546.24</div>
+        <div id="bar27" style="width:12vw;height: 6vh;">68.11</div>
+        <div id="bar28" style="width:12vw;height: 6vh;">14.25%</div>
+        <div id="bar29" style="width:12vw;height: 6vh;">12911</div>
+        <div id="bar30" style="width:12vw;height: 6vh;">1559</div>
+        <div id="bar31" style="width:12vw;height: 6vh;">86.42%</div>
+        <div id="bar32" style="width:12vw;height: 6vh;">3503.81</div>
+    </div>
+    <div id="bar_1" style="width:49vw;height:42vh"></div>
+    <div id="bar_2" style="width:49vw;height:42vh"></div>
+    <div id="bar_3" style="width:33vw;height:30vh"></div>
+    <div id="bar_4" style="width:33vw;height:30vh"></div>
+    <div id="bar_5" style="width:33vw;height:30vh"></div>
+</div>
+<script type="text/javascript">
+    var myChart1 = echarts.init(document.getElementById("bar_1"));
+    option = {
+        title: {
+            text: '年销售累计'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {
+            data: ['销售额', '数量', '利润']
+        },
+        toolbox: {
+            show: true,
+            left: 'right',
+            top: 'center',
+        },
+        xAxis: [
+            {
+                type: 'category',
+                axisTick: {
+                    alignWithLabel: true
+                },
+                data: ['2016', '2017', '2018']
+            }
+        ],
+
+        yAxis: [
+      {
+      type: 'value',
+      name: '销售额（万）',
+      min: 0,
+      max: 600,
+      position: 'left',
+      alignTicks: true,
+      axisLine: {
+        show: true,
+      }
+    },
+    {
+      type: 'value',
+      name: '数量',
+      min: 0,
+      max: 15000,
+      position: 'right',
+      alignTicks: true,
+      axisLine: {
+        show: true,
+      }
+    },
+    {
+      type: 'value',
+      name: '利润（万）',
+      min: 0,
+      max: 70,
+      position: 'right',
+      alignTicks: true,
+      offset: 45,
+      axisLine: {
+        show: true,
+      },
+      axisLabel: {
+        formatter: '{value}',
+        formatter: function (value, index) {           
+          return value.toFixed(0);},
+        interval:7, //加入axisLabel字段,interval后面加你想要间隔的个数
+        
+      }
+    }
+  ],
+  series: [
+            {
+                name: '销售额',
+                type: 'bar',
+                data: [343.19, 424.35, 546.24],
+                label: {
+                show: true,
+                position: 'inside'
+            },
+            },
+            {
+                name: '数量',
+                type: 'bar',
+                yAxisIndex: 1,
+                data: [8012, 9901, 12911],
+                label: {
+                show: true,
+                position: 'inside'
+            },
+            },
+            {
+                name: '利润',
+                type: 'bar',
+                yAxisIndex: 2,
+                data: [47.15, 62.19, 68.11],
+                label: {
+                show: true,
+                position: 'inside'
+            },
+            }
+        ],
+    }
+    myChart1.setOption(option);
+</script>
+<script type="text/javascript">
+    var myChart2 = echarts.init(document.getElementById("bar_2"));
+    var xAxisData = ['2016', '2017', '2018'];
+    var data = [
+        [ // 第一组数据
+            [10, 20, 30, 40, 50], // 最小值、下四分位数、中位数、上四分位数、最大值
+            [15, 25, 35, 45, 55],
+            [20, 30, 40, 50, 60]
+        ],
+        [ // 第二组数据
+            [20, 30, 40, 50, 60],
+            [25, 35, 45, 55, 65],
+            [30, 40, 50, 60, 70]
+        ],
+        [ // 第三组数据
+            [30, 40, 50, 60, 70],
+            [35, 45, 55, 65, 75],
+            [40, 50, 60, 70, 80]
+        ]
+    ];
+
+    // 初始化echarts实例
+    var myChart2 = echarts.init(document.getElementById('bar_2'));
+
+    // 配置项
+    var option = {
+        title: {
+            text: '月销量-盒须图'
+        }, // 提示框组件
+        legend: { // 图例组件
+            data: ['销售额', '数量', '利润']
+        },
+        xAxis: { // 横坐标
+            data: xAxisData
+        },
+        yAxis: [
+        {
+                type: 'value',
+                name: '销售额（万）',
+                min :0,
+                max :70,
+                position: 'left',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+            {
+                type: 'value',
+                name: '数量',
+                min :0,
+                max :1500,
+                position: 'right',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+            {
+                type: 'value',
+                name: '利润（万）',
+                min :0,
+                max :10,
+                position: 'right',
+                offset: 45,
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+    ],
+        series: [ // 系列列表
+            {
+                name: '销售额',
+                type: 'boxplot',
+                data: data[0]
+            },
+            {
+                name: '数量',
+                type: 'boxplot',
+                yAxisIndex: 1,
+                data: data[1]
+            },
+            {
+                name: '利润',
+                type: 'boxplot',
+                yAxisIndex: 2,
+                data: data[2]
+            }
+        ]
+    };
+    myChart2.setOption(option);
+</script>
+<script type="text/javascript">
+    var myChart3 = echarts.init(document.getElementById("bar_3"));
+    option = {
+        title: {
+            text: '2016年 月销售',
+            x: 'left'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['销售额', '数量', '利润'],
+            right :'0%'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        // toolbox: {
+        // feature: {
+        // saveAsImage: {}
+        // }
+        // },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月','8月','9月','10月','11月','12月']
+        },
+        yAxis: [
+            {
+                type: 'value',
+                name: '销售额（万）',
+                min :0,
+                max :45,
+                position: 'left',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+            {
+                type: 'value',
+                name: '数量',
+                min :0,
+                max :1000,
+                position: 'right',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+            {
+                type: 'value',
+                name: '利润（万）',
+                min :0,
+                max :7,
+                position: 'right',
+                offset: 45,
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+        ],
+        series: [
+            {
+                name: '销售额',
+                type: 'line',
+                //stack: 'Total',
+                data: [20.01,16.81,23.02,18.55,38.33,45.71,23.63,45.01,43.38,44.29,56.91,46.51],
+                smooth: true
+            },
+            {
+                name: '数量',
+                type: 'line',
+                //stack: 'Total',
+                yAxisIndex: 1,
+                data: [441,335,555,471,915,989,588,1097,999,1056,1317,1042],
+                smooth: true
+            },
+            {
+                name: '利润',
+                type: 'line',
+                //stack: 'Total',
+                yAxisIndex: 2,
+                data:  [2.39,2.06,4.13,3.28,6.10,4.66,2.75,8.37,6.02,6.35,6.42,9.27],
+                smooth: true
+            },
+
+        ]
+    }
+    myChart3.setOption(option);
+</script>
+<script type="text/javascript">
+    var myChart4 = echarts.init(document.getElementById("bar_4"));
+    option = {
+        title: {
+            text: '2017年 月销售',
+            x: 'left'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['销售额', '数量', '利润'],
+            right :'0%'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        // toolbox: {
+        // feature: {
+        // saveAsImage: {}
+        // }
+        // },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月','8月','9月','10月','11月','12月']
+        },
+        yAxis: [
+            {
+                type: 'value',
+                name: '销售额（万）',
+                position: 'left',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+            {
+                type: 'value',
+                name: '数量',
+                position: 'right',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+            {
+                type: 'value',
+                name: '利润（万）',
+                position: 'right',
+                offset: 45,
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+        ],
+        series: [
+            {
+                name: '销售额',
+                type: 'line',
+                //stack: 'Total',
+                data: [120, 132, 101, 134, 90, 230, 210, 344, 233, 333, 222, 123],
+                smooth: true
+            },
+            {
+                name: '数量',
+                type: 'line',
+                //stack: 'Total',
+                yAxisIndex: 1,
+                data: [220, 182, 191, 234, 290, 330, 310, 344, 222, 232, 352, 321],
+                smooth: true
+            },
+            {
+                name: '利润',
+                type: 'line',
+                //stack: 'Total',
+                yAxisIndex: 2,
+                data: [150, 232, 201, 154, 190, 330, 410, 433, 222, 333, 233, 236],
+                smooth: true
+            },
+
+        ]
+    }
+    myChart4.setOption(option);
+</script>
+<script type="text/javascript">
+    var myChart5 = echarts.init(document.getElementById("bar_5"));
+    //myChart.showLoading();
+    option = {
+        title: {
+            text: '2017年 月销售',
+            x: 'left'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['销售额', '数量', '利润'],
+            right :'0%'
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        // toolbox: {
+        // feature: {
+        // saveAsImage: {}
+        // }
+        // },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月','8月','9月','10月','11月','12月']
+        },
+        yAxis: [
+            {
+                type: 'value',
+                name: '销售额（万）',
+                position: 'left',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+            {
+                type: 'value',
+                name: '数量',
+                position: 'right',
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+            {
+                type: 'value',
+                name: '利润（万）',
+                position: 'right',
+                offset: 45,
+                alignTicks: true,
+                axisLine: {
+                    show: true,
+                },
+            },
+        ],
+        series: [
+            {
+                name: '销售额',
+                type: 'line',
+                //stack: 'Total',
+                data: [120, 132, 101, 134, 90, 230, 210, 344, 233, 333, 222, 123],
+                smooth: true
+            },
+            {
+                name: '数量',
+                type: 'line',
+                //stack: 'Total',
+                yAxisIndex: 1,
+                data: [220, 182, 191, 234, 290, 330, 310, 344, 222, 232, 352, 321],
+                smooth: true
+            },
+            {
+                name: '利润',
+                type: 'line',
+                //stack: 'Total',
+                yAxisIndex: 2,
+                data: [150, 232, 201, 154, 190, 330, 410, 433, 222, 333, 233, 236],
+                smooth: true
+            },
+
+        ]
+    }
+    myChart5.setOption(option);
+</script>

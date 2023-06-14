@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户分析</title>
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/popper/popper.min.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- FontAwesome 5 -->
+    <script src="/static/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
+    <!-- Page plugins -->
+    <script src="/static/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="/static/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script src="/static/vendor/input-mask/input-mask.min.js"></script>
+    <script src="/static/vendor/nouislider/js/nouislider.min.js"></script>
+    <script src="/static/vendor/textarea-autosize/textarea-autosize.min.js"></script>
+    <!-- Theme JS -->
+    <script src="/static/js/theme.js"></script>
+
+</head>
+
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4" >
+      <div class="container">
+        <a class="navbar-brand" href="./"><strong>数据可视化</strong></a>
+        <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main" aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
+          <ul class="navbar-nav ml-auto align-items-lg-center">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">销售数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">全国统计</a>
+                <a class="dropdown-item" href="">地区/省份统计</a>
+                <a class="dropdown-item" href="">二级菜单1</a>
+                <a class="dropdown-item" href="">二级菜单2</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">产品数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">占比与子类</a>
+                <a class="dropdown-item" href="">价格分析</a>
+                <a class="dropdown-item" href="">爆款产品</a>
+                <a class="dropdown-item" href="">商品推荐</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">客户数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">客户分布</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8081/customer">客户分析</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">发货数据</a>
+              <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
+                <a class="dropdown-item" href="">二级菜单1</a>
+                <a class="dropdown-item" href="">二级菜单2</a>
+                <a class="dropdown-item" href="">二级菜单3</a>
+                <a class="dropdown-item" href="">二级菜单4</a>
+              </div>
+            </li>
+
+
+
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="https://github.com/webpixels" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<body>
+<style>
+    #border-primary {
+        width: 100vw;
+        height: 100vh;
+        float: left;
+        /* border: 1px solid red; */
+        margin: 0 auto;
+    }
+
+    #border-primary #bar_1 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar_2 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+
+    #border-primary #bar_3 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+    #border-primary #bar_4 {
+        float: left;
+        width: 50vw;
+        height: 100vh;
+    }
+</style>
+
+<div id="border-primary">
+    <div id="bar_1" style="width:45vw;height:45vh"></div>
+    <div id="bar_2" style="width:45vw;height:45vh"></div>
+    <div id="bar_3" style="width:70vw;height:60vh"></div>
+    <div id="bar_4" style="width:70vw;height:60vh"></div>
+</div>
+<script type="text/javascript">
+    var myChart1 = echarts.init(document.getElementById("bar_1"));
+        option={
+            title: {
+                text: '客户占比',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item', formatter: "{a}<br/>{b}:{c}({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                data: ['公司', '小型企业', '消费者'],
+                left: 'left'
+            },
+            series: [
+                {
+                    name: '客户占比',
+                    type: 'pie',
+                    radius: '50%',
+                    label: {
+                        position: 'inner',//饼图图上显示百分比
+                    },
+                    data: [
+                        { "value": 3090, "name": "公司" },
+                        { "value": 3544, "name": "小型企业" },
+                        { "value": 15291, "name": "消费者" }
+                    ]
+                }
+            ]
+        };
+        myChart1.setOption(option);
+</script>
+<script type="text/javascript">
+    var myChart2 = echarts.init(document.getElementById("bar_2"));
+    option = {
+        title: {
+            text: '客户地区分布',
+        },
+        legend: {
+            data: ['客户'],
+            //left: 'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        xAxis: {
+            type: 'category',
+            data: ['西北', '西南', '华北', '东北', '中南', '华东']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '客户',
+                data: [120, 200, 150, 80, 70, 110],
+                type: 'bar',
+                showBackground: true,
+                backgroundStyle: {
+                    color: 'rgba(180, 180, 180, 0.2)'
+                }
+            }
+        ]
+    };
+    myChart2.setOption(option);
+</script>
+<script type="text/javascript">
+    var myChart3 = echarts.init(document.getElementById("bar_3"));
+    option1 = {
+        title: {
+            text: '客户省的分布',
+        },
+        tooltip: {
+                    valueFormatter: function (value) {
+                        return value + '人';
+                    }
+                },
+        dataset: {
+            source: [
+                ['客户数', '省份'],
+                [5, '西藏'],
+                [10, '青海'],
+                [17, '新疆'],
+                [20, '宁夏'],
+                [44, '海南'],
+                [45, '贵州'],
+                [67, '云南'],
+                [71, '江西'],
+                [77, '甘肃'],
+                [97, '山西'],
+                [99, '内蒙古'],
+                [101, '广西'],
+                [106, '重庆'],
+                [107, '陕西'],
+                [115, '北京'],
+                [125, '福建'],
+                [134, '上海'],
+                [138, '天津'],
+                [155, '安徽'],
+                [158, '河北'],
+                [161, '吉林'],
+                [167, '四川'],
+                [173, '浙江'],
+                [189, '湖南'],
+                [207, '河南'],
+                [245, '江苏'],
+                [246, '湖北'],
+                [259, '黑龙江'],
+                [276, '辽宁'],
+                [334, '广东'],
+                [348, '山东'],
+            ]
+        },
+        grid: { containLabel: true },
+        xAxis: { type: 'category' },
+        yAxis: {},
+        visualMap: {
+            //orient: 'horizontal',
+            left: 'right',
+            top: '30%',
+            min: 0,
+            max: 350,
+            calculable:true,
+            //text: [350, 0],
+            // Map the score column to color
+            dimension: 0,
+            inRange: {
+                //symbolSize:[0,350],
+                color: ['#65B581', '#FFCE34', '#FD665F']
+            }
+        },
+        series: [
+            {
+                type: 'bar',
+                encode: {
+                    // Map the "amount" column to X axis.
+                    x: '省份',
+                    // Map the "product" column to Y axis
+                    y: '客户数'
+                }
+            }
+        ]
+    };
+    myChart3.setOption(option1);
+</script>
+<script type="text/javascript">
+    var myChart4 = echarts.init(document.getElementById("bar_4"));
+    option = {
+        title: {
+            text: '客户城市的分布',
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: { show: true, readOnly: false },
+                magicType: { show: true, type: ['line', 'bar'] },
+                restore: { show: true },
+                saveAsImage: { show: true }
+            }
+        },
+        legend: {
+            data: ['客户数', '客单价']
+        },
+        visualMap: {
+            //orient: 'horizontal',
+            left: 'right',
+            top: '30%',
+            min: 0,
+            max: 150,
+            calculable:true,
+            //text: [0, 150],
+            // Map the score column to color
+            //dimension: 0,
+            inRange: {
+                //symbolSize:[0,150],
+                color: ['#65B581', '#FFCE34', '#FD665F']
+            }
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: ['上海', '重庆', '成都', '太原', '天津', '北京', '洛阳', '长沙', '西安', '苏州', '郑州', '昆明', '石家庄'],
+                axisPointer: {
+                    type: 'shadow'
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: '客户数',
+                // min: 0,
+                // max: 250,
+                //interval: 50,
+                axisLabel: {
+                    formatter: '{value} 人'
+                }
+            },
+            {
+                type: 'value',
+                name: '客单价',
+                // min: 0,
+                // max: 25,
+                interval: 5,
+                axisLabel: {
+                    formatter: '{value} 元'
+                }
+            }
+        ],
+        series: [
+            {
+                name: '客户数',
+                type: 'bar',
+                tooltip: {
+                    valueFormatter: function (value) {
+                        return value + '人';
+                    }
+                },
+                data: [
+                    120, 134, 117, 105, 99, 85, 79, 60, 59, 40.0, 39, 36, 28
+                ]
+            },
+
+            {
+                name: '客单价',
+                type: 'line',
+                yAxisIndex: 1,
+                tooltip: {
+                    valueFormatter: function (value) {
+                        return value + ' 元';
+                    }
+                },
+                data: [100, 90, 95, 67, 70, 40, 99, 107, 100, 80, 87, 80, 125]
+            }
+        ]
+    };
+    myChart4.setOption(option);
+</script>
+</body>
+</html>
