@@ -23,5 +23,7 @@ def deli(request):
     return render(request, 'app/delivery_time.html')
 def price(request):
     return render(request, 'app/price_analysis.html')
+def regional(request):
+    return render(request, 'app/regional_statistics.html')
 
 

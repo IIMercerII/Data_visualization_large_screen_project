@@ -6,8 +6,10 @@
     <title>发货数据展示</title>
     <script src="/static/js/echarts.min.js"></script>
     <script src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src='/static/js/echarts.js'></script>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/popper/popper.min.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.min.js"></script>
 
     <!-- FontAwesome 5 -->
     <script src="/static/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
@@ -21,7 +23,7 @@
     <script src="/static/js/theme.js"></script>
 </head>
 
-   <!-- 导航栏 -->
+    <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4">
       <div class="container">
         <a class="navbar-brand" href="./"><strong>数据可视化</strong></a>
@@ -35,18 +37,18 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">销售数据</a>
               <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                 <a class="dropdown-item" href="http://127.0.0.1:8081/national">全国统计</a>
-                <a class="dropdown-item" href="">地区/省份统计</a>
-                <a class="dropdown-item" href="">二级菜单1</a>
-                <a class="dropdown-item" href="">二级菜单2</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8081/regional">地区/省份统计</a>
+                <a class="dropdown-item" href="">二级菜单#</a>
+                <a class="dropdown-item" href="">二级菜单#</a>
               </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">产品数据</a>
               <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                 <a class="dropdown-item" href="http://127.0.0.1:8081/proportion">产品占比与子类</a>
-                <a class="dropdown-item" href="http://127.0.0.1:8081/price">价格分析</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8081/price">价格分析!</a>
                 <a class="dropdown-item" href="http://127.0.0.1:8081/product">爆款产品</a>
-                <a class="dropdown-item" href="">商品推荐</a>
+                <a class="dropdown-item" href="">商品推荐#</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -62,7 +64,7 @@
 
 
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://github.com/webpixels" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
+              <a class="nav-link nav-link-icon" href="https://github.com/IIMercerII/Data_visualization_large_screen_project" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
             </li>
           </ul>
         </div>
@@ -99,7 +101,7 @@
   },
   series: [
     {
-      data: [0.05, 2.22, 3.21, 5.01],
+      data: [0.043, 2.192, 3.208, 5.019],
       type: 'bar'
     }
   ]
@@ -139,9 +141,7 @@ yAxis: {
     {
       name: '2016',
       type: 'bar',
-      data: [
-        62,158,242,631
-      ],
+      data: [123,335,485,1223],
       itemStyle: {
 						  	normal: {
 								label: {
@@ -157,9 +157,7 @@ yAxis: {
     {
       name: '2017',
       type: 'bar',
-      data: [
-        61,195,280,789
-      ],
+      data: [90,404,581,1560],
       itemStyle: {
 						  	normal: {
 								label: {
@@ -175,7 +173,7 @@ yAxis: {
     {
       name: '2018',
       type: 'bar',
-      data: [80,246,345,1012],
+      data: [157,499,716,2004],
       itemStyle: {
 						  	normal: {
 								label: {
@@ -203,37 +201,37 @@ var option3 = {
         dataset: {
             source: [
                 ['天数', '省份'],
-                [0, '西藏'],
-                [4.54, '广西'],
-                [4.71, '云南'],
-                [4.71, '浙江'],
-                [4.74, '山西'],
-                [4.75, '海南'],
-                [4.78, '天津'],
-                [4.79, '四川'],
-                [4.83, '湖北'],
+                [4.00, '西藏'],
+                [4.31, '云南'],
+                [4.64, '广西'],
+                [4.82, '浙江'],
+                [4.83, '山西'],
+                [4.71, '海南'],
+                [4.74, '天津'],
+                [4.88, '四川'],
+                [4.87, '湖北'],
                 [4.89, '江西'],
-                [4.91, '内蒙古'],
-                [4.93, '黑龙江'],
-                [4.94, '北京'],
-                [4.96, '福建'],
-                [4.97, '山东'],
-                [4.98, '河南'],
-                [5, '湖南'],
-                [5.03, '广东'],
-                [5.04, '上海'],
-                [5.05, '辽林'],
-                [5.05, '重庆'],
-                [5.06, '安徽'],
-                [5.1, '江苏'],
-                [5.11, '陕西'],
-                [5.12, '河北'],
-                [5.14, '贵州'],
-                [5.25, '宁夏'],
-                [5.25, '甘肃'],
-                [5.38, '吉林'],
-                [5.5, '青海'],
-                [5.67, '新疆'],
+                [5.05, '内蒙古'],
+                [5.02, '黑龙江'],
+                [5.04, '北京'],
+                [5.07, '福建'],
+                [4.95, '山东'],
+                [4.99, '河南'],
+                [5.07, '湖南'],
+                [4.97, '广东'],
+                [4.87, '上海'],
+                [5.00, '辽林'],
+                [4.75, '重庆'],
+                [5.26, '安徽'],
+                [5.13, '江苏'],
+                [4.96, '陕西'],
+                [5.21, '河北'],
+                [5.07, '贵州'],
+                [5.13, '宁夏'],
+                [5.41, '甘肃'],
+                [5.39, '吉林'],
+                [5.50, '青海'],
+                [5.60, '新疆'],
             ]
         },
         grid: { containLabel: true },

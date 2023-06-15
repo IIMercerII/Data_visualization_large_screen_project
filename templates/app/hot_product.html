@@ -6,6 +6,9 @@
     <script src="/static/js/echarts.min.js"></script>
     <script src="/static/js/jquery.min.js"></script>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/popper/popper.min.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.min.js"></script>
 
     <!-- FontAwesome 5 -->
     <script src="/static/vendor/fontawesome/js/fontawesome-all.min.js" defer></script>
@@ -19,7 +22,7 @@
     <script src="/static/js/theme.js"></script>
 </head>
 
-   <!-- 导航栏 -->
+    <!-- 导航栏 -->
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4">
       <div class="container">
         <a class="navbar-brand" href="./"><strong>数据可视化</strong></a>
@@ -33,18 +36,18 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">销售数据</a>
               <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                 <a class="dropdown-item" href="http://127.0.0.1:8081/national">全国统计</a>
-                <a class="dropdown-item" href="">地区/省份统计</a>
-                <a class="dropdown-item" href="">二级菜单1</a>
-                <a class="dropdown-item" href="">二级菜单2</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8081/regional">地区/省份统计</a>
+                <a class="dropdown-item" href="">二级菜单#</a>
+                <a class="dropdown-item" href="">二级菜单#</a>
               </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbar_main_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">产品数据</a>
               <div class="dropdown-menu" aria-labelledby="navbar_1_dropdown_1">
                 <a class="dropdown-item" href="http://127.0.0.1:8081/proportion">产品占比与子类</a>
-                <a class="dropdown-item" href="http://127.0.0.1:8081/price">价格分析</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8081/price">价格分析!</a>
                 <a class="dropdown-item" href="http://127.0.0.1:8081/product">爆款产品</a>
-                <a class="dropdown-item" href="">商品推荐</a>
+                <a class="dropdown-item" href="">商品推荐#</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -60,7 +63,7 @@
 
 
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://github.com/webpixels" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
+              <a class="nav-link nav-link-icon" href="https://github.com/IIMercerII/Data_visualization_large_screen_project" target="_blank"><i class="fab fa-github"></i><span class="ml-2 d-lg-none">Github</span></a>
             </li>
           </ul>
         </div>
@@ -131,28 +134,15 @@
                 symbolSize: 20,
                 color: 'green',
                 data: [
-                    [10.0, 8.04],
-                    [8.07, 6.95],
-                    [13.0, 7.58],
-                    [9.05, 8.81],
-                    [11.0, 8.33],
-                    [14.0, 7.66],
-                    [13.4, 6.81],
-                    [30.0, 6.33],
-                    [14.0, 8.96],
-                    [12.5, -.82],
-                    [9.15, 7.2],
-                    [11.5, 7.2],
-                    [3.03, -4.23],
-                    [12.2, 7.83],
-                    [2.02, 4.47],
-                    [1.05, 3.33],
-                    [4.05, 4.96],
-                    [6.03, 7.24],
-                    [12.0, 6.26],
-                    [12.0, 8.84],
-                    [10.08, 5.82],
-                    [15.02, 5.68]
+                    [105327.74,12814.9],
+                    [100120.3,23820.44],
+                    [94448.06,12451.32],
+                    [742565.264,58257.724],
+                    [85206.8,19782.56],
+                    [46102.672,6009.332],
+                    [32976.44,7652.54],
+                    [406211.54,112932.26],
+                    [67805.5,-3884.99]
                 ],
                 type: 'scatter'
             },
@@ -161,28 +151,10 @@
                 symbolSize: 20,
                 color: 'blue',
                 data: [
-                    [30.0, 8.04],
-                    [9.07, 6.95],
-                    [13.0, 7.58],
-                    [9.05, 8.81],
-                    [11.0, 8.33],
-                    [14.0, 7.66],
-                    [15.4, 6.81],
-                    [10.0, 6.33],
-                    [16.0, 8.96],
-                    [12.5, 6.82],
-                    [9.15, -7.2],
-                    [11.5, 7.2],
-                    [3.03, 4.23],
-                    [12.2, 7.83],
-                    [2.02, -4.47],
-                    [1.05, 3.33],
-                    [4.05, 4.96],
-                    [6.03, 7.24],
-                    [12.0, 6.26],
-                    [12.0, 8.84],
-                    [7.08, 5.82],
-                    [5.02, 5.68]
+                    [326771.032,50524.012],
+                    [604625.644,62456.044],
+                    [250100.62,34807.08],
+                    [623829.752,92080.632]
                 ],
                 type: 'scatter'
             },
@@ -191,28 +163,10 @@
                 symbolSize: 20,
                 color: 'red',
                 data: [
-                    [10.0, 8.04],
-                    [8.07, 6.95],
-                    [15.0, 7.58],
-                    [30.05, 8.81],
-                    [11.0, 8.33],
-                    [18.0, -7.66],
-                    [13.4, 6.81],
-                    [40.0, 6.33],
-                    [14.0, 8.96],
-                    [12.5, 6.82],
-                    [6.15, -7.2],
-                    [11.5, 7.2],
-                    [3.03, 4.23],
-                    [30.2, 7.83],
-                    [2.02, 4.47],
-                    [1.05, 3.33],
-                    [6.05, 4.96],
-                    [9.03, 7.24],
-                    [12.0, 6.26],
-                    [12.0, 8.84],
-                    [9.08, 5.82],
-                    [5.02, 5.68]
+                    [632911.916,87722.796],
+                    [826332.612,133945.812],
+                    [169770.468,31127.768],
+                    [349872.019,-65510.50]
                 ],
                 type: 'scatter'
             }
@@ -266,7 +220,7 @@
         yAxis: [
             {
                 type: 'category',
-                data: ['书架', '椅子', '复印机', '设备', '用具', '纸张', '装订机', '系固件', '桌子']
+                data: ['Hamilton Beach 冰箱, 黑色', 'Breville 炉灶, 白色', 'Hamilton Beach 炉灶, 白色', 'Hoover 炉灶, 红色', 'Hamilton Beach 炉灶, 红色']
             }
         ],
         series: [
@@ -280,7 +234,7 @@
                 emphasis: {
                     focus: 'series'
                 },
-                data: [200, 170, 240, 244, 200, 220, 210, 234, 543]
+                data: [72269.680, 37610.496 ,  27744.640, 25998.028, 25309.200]
             },
             {
                 name: '利润',
@@ -294,7 +248,7 @@
                     focus: 'series'
                 },
                 xAxisIndex: 1,
-                data: [-120, -132, -101, -134, -190, -230, -210, 343, 234]
+                data: [2165.660, -16300.704,2168.180, 1193.248, 0.000]
             }
         ]
     };
@@ -346,7 +300,7 @@
         yAxis: [
             {
                 type: 'category',
-                data: ['书架', '椅子', '复印机', '设备', '用具', '纸张', '装订机', '系固件', '桌子']
+                data: ['诺基亚 充电器, 混合尺寸', '摩托罗拉 充电器, 全尺寸', '诺基亚 充电器, 整包', '摩托罗拉 充电器, 混合尺寸','惠普 无线传真机, 彩色']
             }
         ],
         series: [
@@ -360,7 +314,7 @@
                 emphasis: {
                     focus: 'series'
                 },
-                data: [200, 170, 240, 244, 200, 220, 210, 234, 543]
+                data: [50686.860, 48684.888, 45839.304,43380.288, 30378.600]
             },
             {
                 name: '利润',
@@ -374,7 +328,7 @@
                     focus: 'series'
                 },
                 xAxisIndex: 1,
-                data: [-120, -132, -101, -134, -190, -230, -210, 343, 234]
+                data: [20660.780, 658.868, 5090.904,-4338.432,909.720]
             }
         ]
     };
@@ -426,7 +380,7 @@
         yAxis: [
             {
                 type: 'category',
-                data: ['书架', '椅子', '复印机', '设备', '用具', '纸张', '装订机', '系固件', '桌子']
+                data: ['Safco 书库, 传统', 'Harbour Creations 扶手椅', ' Bush 古典书架, 金属 ', 'SAFCO 扶手椅', 'Sauder 古典书架, 传统  ']
             }
         ],
         series: [
@@ -440,7 +394,7 @@
                 emphasis: {
                     focus: 'series'
                 },
-                data: [200, 170, 240, 244, 200, 220, 210, 234, 543]
+                data: [45839.304, 42192.920, 41928.376, 35054.208, 33367.768]
             },
             {
                 name: '利润',
@@ -454,7 +408,7 @@
                     focus: 'series'
                 },
                 xAxisIndex: 1,
-                data: [-120, -132, -101, -134, -190, -230, -210, 343, 234]
+                data: [5090.904, 4416.860, -540.204, 12116.608, 2847.768]
             }
         ]
     };

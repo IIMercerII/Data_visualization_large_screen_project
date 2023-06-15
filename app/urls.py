@@ -10,4 +10,5 @@ urlpatterns = [
     path('national', views.nation, name='national_profile'),
     path('delivery', views.deli, name='delivery_time'),
     path('price', views.price, name='price_analysis'),
+    path('regional', views.regional, name='regional_statistics'),
 ]
